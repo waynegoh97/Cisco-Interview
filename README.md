@@ -10,7 +10,7 @@ A small python script to check internet connectivity together with download spee
 
 ### Screenshot/GIF showing the sample use of the script
 ![output](https://github.com/AshuSharma7/python-mini-projects/raw/master/projects/Internet_connection_check/output.png)
-![output1](https://github.com/waynegoh97/Cisco-Interview/output1.png)
+![output1](https://github.com/waynegoh97/Cisco-Interview/blob/master/output1.png)
 
 ## *Author Name*
 [Ashu Sharma](https://github.com/AshuSharma7)

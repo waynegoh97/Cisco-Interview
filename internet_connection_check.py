@@ -58,32 +58,32 @@ database_url = {database_server[0]:['https://link.testfile.org/150MB', 'https://
 									 'http://ipv4.download.thinkbroadband.com/20MB.zip']}
 
 
-user_select = int(input(f'''
+
+if (internet_connection_test()):
+	user_select = int(input(f'''
 Please select a number:
-										1. Single file from a server
-										2. Multiple files from same server
-										3. Multiple files from different servers
-										'''))
+					1. Single file from a server
+					2. Multiple files from same server
+					3. Multiple files from different servers
+					'''))
+	### simple speed test ###
+	if user_select == 1:
+		single_test = []
+		single_test.append(database_url[find_best_server(database_server)][0])
+		run_speed_test(single_test)
 
-internet_connection_test()
-### simple speed test ###
-if user_select == 1:
-	single_test = []
-	single_test.append(database_url[find_best_server(database_server)][0])
-	run_speed_test(single_test)
+	### multiple speed test single server ###
+	elif user_select == 2:
+		run_speed_test(database_url[find_best_server(database_server)])
 
-### multiple speed test single server ###
-elif user_select == 2:
-	run_speed_test(database_url[find_best_server(database_server)])
+	### multiple speed test multiple server ###
+	elif user_select == 3:
+		url_list = []
+		for db in database_server:
+			url_list.append(database_url[db][0])
+		run_speed_test(url_list)
 
-### multiple speed test multiple server ###
-elif user_select == 3:
-	url_list = []
-	for db in database_server:
-		url_list.append(database_url[db][0])
-	run_speed_test(url_list)
-
-else:
-	print("Incorrect input... Please try again")
+	else:
+		print("Incorrect input... Please try again")
 	
 

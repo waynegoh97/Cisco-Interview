@@ -1,20 +1,18 @@
-# Internet Connection Check
-<!--Remove the below lines and add yours -->
-A small python script to check internet connectivity.
+# Internet Connection Check with Download Speed Check
+A small python script to check internet connectivity together with download speed
 
 ### Prerequisites
-<!--Remove the below lines and add yours -->
-Python3
+- Python3
+- Requests
 
 ### How to run the script
-<!--Remove the below lines and add yours -->
 > python3 internet_connection_check.py
 
 ### Screenshot/GIF showing the sample use of the script
-<!--Remove the below lines and add yours -->
 ![output](https://github.com/AshuSharma7/python-mini-projects/raw/master/projects/Internet_connection_check/output.png)
+![output1](https://github.com/waynegoh97/Cisco-Interview/output1.png)
 
 ## *Author Name*
-<!--Remove the below lines and add yours -->
 [Ashu Sharma](https://github.com/AshuSharma7)
 [Jacob Ogle](https://github.com/JakeOgle94)
+[Wayne Goh](https://github.com/waynegoh97)

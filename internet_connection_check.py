@@ -2,6 +2,36 @@ import requests
 import time
 from requests.exceptions import ConnectionError
 
+# Cheng Yi's recommendation
+import os
+def internet_connection_test(url:str):
+  print(f'Attempting to connect to {url} to determine internet connection status.')
+  
+  try:
+    # ping uses ICMP protocol
+  	# pinging with 5 packets via -c flag with 10 second timeout
+   response = os.popen(f"ping -c 5 -t 10 {url}")
+   for line in response.readlines():
+      print(line)
+  except:
+    print(f"Failed with unparsed reason.")
+    
+  # uses HTTP protocol
+	# try:
+	# 	print(url)
+	# 	resp = requests.get(url, timeout = 10)
+	# 	resp.text
+	# 	resp.status_code
+	# 	print(f'Connection to {url} was successful.')
+	# 	return True
+	# except ConnectionError as e:
+	# 	requests.ConnectionError
+	# 	print(f'Failed to connect to {url}.')
+	# 	return False
+	# except:
+	# 	print(f'Failed with unparsed reason.')
+	# 	return False
+
 def internet_connection_test():
 	url = 'https://www.google.com/'
 	print(f'Attempting to connect to {url} to determine internet connection status.')
@@ -25,6 +55,10 @@ def download_speed_test(url):
 	start_time = time.time()
 	response = requests.get(url, stream=True) #stream=True allow files to download response in stream of bytes
 	overall_data = 0
+ 
+ 	# Cheng Yi's recommendation
+	total_length = float(response.headers.get('content-length'))
+ 
 	for data in response.iter_content(chunk_size=4096):
 		overall_data += len(data) #data is byte object, len returns length in bytes
 	end_time = time.time()

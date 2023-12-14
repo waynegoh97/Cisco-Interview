@@ -51,24 +51,25 @@ def internet_connection_test():
 ### Charis's suggestion: Could use an existing library (eg. speedtest/pyspeedtest) for more accurate and comprehensive download speed measurement (streamline)
 # Need to install speedtest module first (pip install speedtest-cli)
 import speedtest
+def speedtest_cli():
 
-#creates an instance of the Speedtest class
-#interact with the speedtest module and perform measurements
-st = speedtest.Speedtest()
-#retrieves information about available speedtest servers 
-#chooses the one that is considered to be the "best" for the current location based on factors like ping and latency
-best_server = st.get_best_server()
+	#creates an instance of the Speedtest class
+	#interact with the speedtest module and perform measurements
+	st = speedtest.Speedtest()
+	#retrieves information about available speedtest servers 
+	#chooses the one that is considered to be the "best" for the current location based on factors like ping and latency
+	best_server = st.get_best_server()
 
-print(f"Testing download speed from server {best_server['host']}...")
-#initiates a download test from the chosen server and measures the download speed
-#bytes per second
-download_speed = st.download()
+	print(f"Testing download speed from server {best_server['host']}...")
+	#initiates a download test from the chosen server and measures the download speed
+	#bytes per second
+	download_speed = st.download()
 
-#divides download speed in bytes per second by 1024**2 to convert it to megabits per second (Mbps)
-# 1 byte = 8 bits - not sure if need to divide by 8 as well
-# 1 kilobyte = 1024 bytes
-# 1 megabit = 1024 bits
-print(f"Download Speed: {download_speed / (1024**2):.2f} Mbps")
+	#divides download speed in bytes per second by 1024**2 to convert it to megabits per second (Mbps)
+	# 1 byte = 8 bits - not sure if need to divide by 8 as well
+	# 1 kilobyte = 1024 bytes
+	# 1 megabit = 1024 bits
+	print(f"Download Speed: {download_speed / (1024**2):.2f} Mbps")
 # --------------------------------------------------------------
 
 
@@ -116,6 +117,7 @@ Please select a number:
 					1. Single file from a server
 					2. Multiple files from same server
 					3. Multiple files from different servers
+					4. Speedtest library
 					'''))
 	### simple speed test ###
 	if user_select == 1:
@@ -133,6 +135,9 @@ Please select a number:
 		for db in database_server:
 			url_list.append(database_url[db][0])
 		run_speed_test(url_list)
+
+	elif user_select == 4:
+		speedtest_cli()
 
 	else:
 		print("Incorrect input... Please try again")

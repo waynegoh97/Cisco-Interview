@@ -46,6 +46,32 @@ def internet_connection_test():
 		print(f'Failed with unparsed reason.')
 		return False
 
+
+# --------------------------------------------------------------
+### Charis's suggestion: Could use an existing library (eg. speedtest/pyspeedtest) for more accurate and comprehensive download speed measurement (streamline)
+# Need to install speedtest module first (pip install speedtest-cli)
+import speedtest
+
+#creates an instance of the Speedtest class
+#interact with the speedtest module and perform measurements
+st = speedtest.Speedtest()
+#retrieves information about available speedtest servers 
+#chooses the one that is considered to be the "best" for the current location based on factors like ping and latency
+best_server = st.get_best_server()
+
+print(f"Testing download speed from server {best_server['host']}...")
+#initiates a download test from the chosen server and measures the download speed
+#bytes per second
+download_speed = st.download()
+
+#divides download speed in bytes per second by 1024**2 to convert it to megabits per second (Mbps)
+# 1 byte = 8 bits - not sure if need to divide by 8 as well
+# 1 kilobyte = 1024 bytes
+# 1 megabit = 1024 bits
+print(f"Download Speed: {download_speed / (1024**2):.2f} Mbps")
+# --------------------------------------------------------------
+
+
 def download_speed_test(url):
 	start_time = time.time()
 	response = requests.get(url, stream=True) #stream=True allow files to download response in stream of bytes

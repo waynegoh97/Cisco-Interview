@@ -5,7 +5,7 @@ from requests.exceptions import ConnectionError
 
 # Cheng Yi's recommendation
 import os
-from re import findall
+
 def ping_test(url:str):
 	print(f'Attempting to ping to {url} ')
 	try:
@@ -51,9 +51,6 @@ def download_speed_test(url):
 	response = requests.get(url, stream=True) #stream=True allow files to download response in stream of bytes
 	overall_data = 0
  
- 	# Cheng Yi's recommendation
-	total_length = float(response.headers.get('content-length'))
- 
 	for data in response.iter_content(chunk_size=4096):
 		overall_data += len(data) #data is byte object, len returns length in bytes
 	end_time = time.time()
@@ -68,7 +65,7 @@ def run_speed_test(urls):
 	for url in urls:
 		speed = download_speed_test(url)
 		all_speed.append(speed)
-		time.sleep(2)
+		#time.sleep(2)
 	print(f'Your download speed is {round(sum(all_speed)/len(all_speed))} Mbps')
 
 def find_best_server(server):
@@ -81,10 +78,9 @@ def find_best_server(server):
 
 database_server = ['http://link.testfile.org', 'http://www.speedtest.com.sg', 'http://ipv4.download.thinkbroadband.com']
 database_url = {database_server[0]:['https://link.testfile.org/150MB', 'https://link.testfile.org/PDF200MB','https://link.testfile.org/70MB', 'https://link.testfile.org/PDF50MB'],
-								database_server[1]:['http://www.speedtest.com.sg/test_random_100mb.zip?p=f08a4ffb20b7ca9a6ae12278aaed7fc617023819786578499a39e8a', 'http://www.speedtest.com.sg/test_random_100mb.zip',
-								'http://www.speedtest.com.sg/test_random_10mb.zip', 'http://www.speedtest.com.sg/test_random_10mb.zip?p=db5398b807ede45b8e05158294ce423a1702389203657865d3dda48'],
-								database_server[2]:['http://ipv4.download.thinkbroadband.com/200MB.zip','http://ipv4.download.thinkbroadband.com/100MB.zip', 'http://ipv4.download.thinkbroadband.com/50MB.zip', 
-									 'http://ipv4.download.thinkbroadband.com/20MB.zip']}
+								database_server[1]:['http://www.speedtest.com.sg/test_random_100mb.zip?p=f08a4ffb20b7ca9a6ae12278aaed7fc617023819786578499a39e8a', 'http://www.speedtest.com.sg/test_random_100mb.zip']
+								#'http://www.speedtest.com.sg/test_random_10mb.zip', 'http://www.speedtest.com.sg/test_random_10mb.zip?p=db5398b807ede45b8e05158294ce423a1702389203657865d3dda48'],
+								,database_server[2]:['http://ipv4.download.thinkbroadband.com/100MB.zip','http://ipv4.download.thinkbroadband.com/200MB.zip', 'http://ipv4.download.thinkbroadband.com/50MB.zip']}
 
 
 
